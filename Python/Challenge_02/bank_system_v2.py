@@ -1,15 +1,20 @@
-balance = 0
-daily_withdraw = 0
 LIMIT = 500
 LIMIT_WITHDRAW = 3
-users = [{'name': 'John', 'cpf': '456123'}, {'name': 'Lara', 'cpf': '123456'}]
+AGENCY = '0001'
+users = [{'name': 'Lara', 'cpf': 123456}]
+accounts = [{'account_number': 101010, 'balance': 0}]
+account_number = 000000
   
-  
-def filter_cpf(cpf, users):
-  for user in users:
-    if user['cpf'] == cpf:
-      return True
-  return False  
+def filter_cpf(value, database):
+  field_type = ''
+  for row in database:
+    if 'cpf' in row:
+      field_type = 'cpf'
+    else:
+      field_type = 'account_number'
+       
+  filtered_data = [data for data in database if data[field_type] == value]
+  return filtered_data[0] if filtered_data else None
 
 def create_address():
   labels = ['public_area', 'number', 'neighborhood', 'city', 'state']
@@ -22,15 +27,14 @@ def create_address():
   
   return address
 
-def create_user():
+def create_user(users):
   print('\n----------Personal data---------\n')
   cpf = input('Enter CPF: ')
   user = filter_cpf(cpf, users)
-  
   if user:
     print('User already exists')
     return 
-  
+
   obj_client =  {
     'cpf': cpf,
     'name': input('Enter name: ').lower(),
@@ -38,39 +42,55 @@ def create_user():
     'address': create_address()
   }
 
-  
-  return obj_client
+  users.append(obj_client)
  
-def create_account():
+def create_account(AGENCY, users, accounts):
+  cpf = input('Enter CPF: ')
+  user = filter_cpf(cpf, users)
   
-
-  client = create_user()
-  users.append(client)
-
-def deposit_amount(amount):
-  global balance
-  if amount > 0:
-    balance += amount
-    print(f"You have deposited ${amount:.2f} and your balance is ${balance:.2f}")
+  if not user:
+    print('\nUser does not exists\n')
+    return
+  
+  account_number += 1
+  
+  obj_account = {
+    'agency': AGENCY,
+    'account_number': account_number,
+    'balance': 0,
+    'daily_withdraw': 0,
+    'cpf': cpf
+  }
+  
+  accounts.append(obj_account)
+  
+def deposit_amount(amount, account_number, database=accounts):
+  account = filter_cpf(account_number, database)
+  
+  if account:
+    if amount > 0:
+      account['balance'] += amount
+      print(f"You have deposited ${amount:.2f} and your balance is ${account['balance']:.2f}")
+    else:
+      print("Operation Invalid")
   else:
-    print("Operation Invalid")
-
-
-def withdraw_amount(amount):
-  global balance, daily_withdraw
-  if amount > balance:
-    print("Insufficient balance")
-  elif amount > LIMIT:
-    print(f"You have exceeded your limit of ${LIMIT:.2f}")
-  elif daily_withdraw == LIMIT_WITHDRAW:
-    print(f"You have exceeded your limit of {LIMIT_WITHDRAW} withdraw")
-  elif amount <= 0:
-    print("Operation Invalid")
-  else:
-    balance -= amount
-    daily_withdraw += 1
-    print(f"You have withdrawn {amount:.2f} and your balance is {balance:.2f}")
-
+    print("Account does not exists")
+    
+def withdraw_amount(amount, account_number, database=accounts):
+  account = filter_cpf(account_number, database )
+  if account:
+    if amount > account['balance']:
+      print("Insufficient balance")
+    elif amount > LIMIT:
+      print(f"You have exceeded your limit of ${LIMIT:.2f}")
+    elif account['daily_withdraw'] == LIMIT_WITHDRAW:
+      print(f"You have exceeded your limit of {LIMIT_WITHDRAW} withdraw")
+    elif amount <= 0:
+      print("Operation Invalid")
+    else:
+      account['balance'] -= amount
+      account['daily_withdraw'] += 1
+      print(f"You have withdrawn {amount:.2f} and your balance is {account['balance']:.2f}")
 
 def statement_amount():
   print("-------Statement-------")
@@ -85,7 +105,9 @@ def menu():
   1. Deposit
   2. Withdraw
   3. Statement
-  4. Exit  
+  4. New User
+  5. New Account
+  6. Exit  
   """)
   
 
@@ -102,6 +124,10 @@ def menu():
 #   elif option == "3":
 #     statement_amount()
 #   elif option == "4":
+#     create_user(users)
+#   elif option == "5":
+#     create_account(AGENCY, users, accounts)
+#   elif option == "6":
 #     break
 #   else:
 #     print("Invalid option")
