@@ -102,3 +102,6 @@ create table storageLocation(
 	constraint fk_local_starage foreign key (idLocStorage) references productStorage(idProdStorage)
 );
 
+ALTER TABLE productStorage
+ADD COLUMN price float(10, 2);
+

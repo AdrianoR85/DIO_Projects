@@ -200,47 +200,69 @@ INSERT INTO productSeller (idProdSeller, idProdProduct, ProdQuantity) VALUES
 (19, 19, 100),
 (20, 20, 105);
 
+select * from productstorage p;
+
 INSERT INTO productOrder (idProdOrder, idOrderProduct, PoQuantity, PoStatus) VALUES
-(1, 1, 5, 'Disponível'),
-(2, 2, 10, 'Sem Estoque'),
-(3, 3, 15, 'Disponível'),
-(4, 4, 20, 'Sem Estoque'),
-(5, 5, 25, 'Disponível'),
-(6, 6, 30, 'Sem Estoque'),
-(7, 7, 35, 'Disponível'),
-(8, 8, 40, 'Sem Estoque'),
-(9, 9, 45, 'Disponível'),
-(10, 10, 50, 'Sem Estoque'),
-(11, 11, 55, 'Disponível'),
-(12, 12, 60, 'Sem Estoque'),
-(13, 13, 65, 'Disponível'),
-(14, 14, 70, 'Sem Estoque'),
-(15, 15, 75, 'Disponível'),
-(16, 16, 80, 'Sem Estoque'),
-(17, 17, 85, 'Disponível'),
-(18, 18, 90, 'Sem Estoque'),
-(19, 19, 95, 'Disponível'),
-(20, 20, 100, 'Sem Estoque');
+(21, 1, 5, 'Disponível'),
+(22, 2, 10, 'Sem Estoque'),
+(23, 3, 15, 'Disponível'),
+(24, 4, 20, 'Sem Estoque'),
+(25, 5, 25, 'Disponível'),
+(26, 6, 30, 'Sem Estoque'),
+(27, 7, 35, 'Disponível'),
+(28, 8, 40, 'Sem Estoque'),
+(29, 9, 45, 'Disponível'),
+(30, 10, 50, 'Sem Estoque'),
+(31, 11, 55, 'Disponível'),
+(32, 12, 60, 'Sem Estoque'),
+(33, 13, 65, 'Disponível'),
+(34, 14, 70, 'Sem Estoque'),
+(35, 15, 75, 'Disponível'),
+(36, 16, 80, 'Sem Estoque'),
+(37, 17, 85, 'Disponível'),
+(38, 18, 90, 'Sem Estoque'),
+(39, 19, 95, 'Disponível'),
+(40, 20, 100, 'Sem Estoque');
 
 INSERT INTO storageLocation (idLocProduct, idLocStorage, Location) VALUES
-(1, 1, 'Section A'),
-(2, 2, 'Section B'),
-(3, 3, 'Section C'),
-(4, 4, 'Section D'),
-(5, 5, 'Section E'),
-(6, 6, 'Section F'),
-(7, 7, 'Section G'),
-(8, 8, 'Section H'),
-(9, 9, 'Section I'),
-(10, 10, 'Section J'),
-(11, 11, 'Section K'),
-(12, 12, 'Section L'),
-(13, 13, 'Section M'),
-(14, 14, 'Section N'),
-(15, 15, 'Section O'),
-(16, 16, 'Section P'),
-(17, 17, 'Section Q'),
-(18, 18, 'Section R'),
-(19, 19, 'Section S'),
-(20, 20, 'Section T');
+(21,21, 'Section A'),
+(22,22, 'Section B'),
+(23, 23, 'Section C'),
+(24, 24, 'Section D'),
+(25, 25, 'Section E'),
+(26, 26, 'Section F'),
+(27, 27, 'Section G'),
+(28, 28, 'Section H'),
+(29, 29, 'Section I'),
+(30, 30, 'Section J'),
+(31, 31, 'Section K'),
+(32, 32, 'Section L'),
+(33, 33, 'Section M'),
+(34, 34, 'Section N'),
+(35, 35, 'Section O'),
+(36, 36, 'Section P'),
+(37, 37, 'Section Q'),
+(38, 38, 'Section R'),
+(39, 39, 'Section S'),
+(40, 40, 'Section T');
 
+UPDATE productStorage SET price = 19.99 WHERE idProdStorage = 21;
+UPDATE productStorage SET price = 29.99 WHERE idProdStorage = 22;
+UPDATE productStorage SET price = 39.99 WHERE idProdStorage = 23;
+UPDATE productStorage SET price = 24.99 WHERE idProdStorage = 24;
+UPDATE productStorage SET price = 34.99 WHERE idProdStorage = 25;
+UPDATE productStorage SET price = 44.99 WHERE idProdStorage = 26;
+UPDATE productStorage SET price = 49.99 WHERE idProdStorage = 27;
+UPDATE productStorage SET price = 54.99 WHERE idProdStorage = 28;
+UPDATE productStorage SET price = 59.99 WHERE idProdStorage = 29;
+UPDATE productStorage SET price = 64.99 WHERE idProdStorage = 30;
+UPDATE productStorage SET price = 69.99 WHERE idProdStorage = 31;
+UPDATE productStorage SET price = 74.99 WHERE idProdStorage = 32;
+UPDATE productStorage SET price = 79.99 WHERE idProdStorage = 33;
+UPDATE productStorage SET price = 84.99 WHERE idProdStorage = 34;
+UPDATE productStorage SET price = 89.99 WHERE idProdStorage = 35;
+UPDATE productStorage SET price = 94.99 WHERE idProdStorage = 36;
+UPDATE productStorage SET price = 99.99 WHERE idProdStorage = 37;
+UPDATE productStorage SET price = 104.99 WHERE idProdStorage = 38;
+UPDATE productStorage SET price = 109.99 WHERE idProdStorage = 39;
+UPDATE productStorage SET price = 114.99 WHERE idProdStorage = 40;
